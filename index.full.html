@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+     <head>
+          <title>Spell it!</title>
+     </head>
+     <body>
+          <input type="text" id="word" value="Bharath">
+          <div id="phonetic_box"></div>
+     </body>
+     <script>
+     var nato={
+          "A":"Alfa",
+          "B":"Bravo",
+          "C":"Charlie",
+          "D":"Delta",
+          "E":"Echo",
+          "F":"Foxtrot",
+          "G":"Golf",
+          "H":"Hotel",
+          "I":"India",
+          "J":"Juliett",
+          "K":"Kilo",
+          "L":"Lima",
+          "M":"Mike",
+          "N":"November",
+          "O":"Oscar",
+          "P":"Papa",
+          "Q":"Qubec",
+          "R":"Romeo",
+          "S":"Sierra",
+          "T":"Tango",
+          "U":"Uniform",
+          "V":"Victor",
+          "W":"Whiskey",
+          "X":"Xray",
+          "Y":"Yankee",
+          "Z":"Zulu"
+     };
+     
+     window.onload=function(){
+          console.log("Loaded!");
+          document.getElementById("word").oninput=function(){
+               word2phonetic(document.getElementById("word").value);
+          };
+     };
+     
+     function word2phonetic(word){
+          var output=""
+          var alphaArray=word.toUpperCase().split("");
+          alphaArray.forEach(function(alphabet){
+               console.log("["+alphabet+"]");
+               if (alphabet>"A" && alphabet<"Z"){
+                    output+=" "+nato[alphabet]+" ";
+               }else if(alphabet==" "){
+                    output+=" &lt; space &gt; ";
+               }
+          });
+          document.getElementById("phonetic_box").innerHTML=output
+     }
+     </script>
+</html>
