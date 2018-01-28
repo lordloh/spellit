@@ -33,22 +33,23 @@
                     font-size:1.5em;
                     border-radius:5px;
 				box-sizing:border-box;
+				margin-right:10px;
+                    margin-left:10px;
                }
                .alpha>span{
                     box-sizing:border-box;
                }
                .alpha.chars{
-                    background:#CBA;
+                    background:#EDC;
                }
                .alpha.nums{
                     background:#FED;
                }
                .alpha.space{
-                    background:#A98;
+                    background:#DCB;
                }
-               .alpha{
-                    margin-right:10px;
-                    margin-left:10px;
+               .alpha.others{
+                    background:#CBA;
                }
                .center{
                     text-align:center;
@@ -108,6 +109,8 @@
                          current+="<span class=\"alpha space\"> &lt; space &gt; </span>";
                     }else if (alphabet>=0 && alphabet<=9){
                          current+="<span class=\"alpha nums\"> &nbsp; "+alphabet+"  &nbsp; </span>";
+                    }else{
+                         current+="<span class=\"alpha others\"> &nbsp; "+alphabet+"  &nbsp; </span>";
                     }
                     output+=current;
                });
