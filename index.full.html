@@ -2,60 +2,87 @@
 <html>
      <head>
           <title>Spell it!</title>
+          <style>
+               .wide{
+                    width:100%;
+                    margin:5px;
+               }
+               .top_10px{
+                    margin-top:10px;
+               }
+               .alpha.chars{
+                    background:#CBA;
+               }
+               .alpha.nums{
+                    background:#FED;
+               }
+               .alpha.space{
+                    background:#A98;
+               }
+               .alpha{
+                    margin-right:10px;
+                    margin-left:10px;
+               }
+          </style>
      </head>
      <body>
-          <input type="text" id="word" value="Bharath">
-          <div id="phonetic_box"></div>
-     </body>
-     <script>
-     var nato={
-          "A":"Alfa",
-          "B":"Bravo",
-          "C":"Charlie",
-          "D":"Delta",
-          "E":"Echo",
-          "F":"Foxtrot",
-          "G":"Golf",
-          "H":"Hotel",
-          "I":"India",
-          "J":"Juliett",
-          "K":"Kilo",
-          "L":"Lima",
-          "M":"Mike",
-          "N":"November",
-          "O":"Oscar",
-          "P":"Papa",
-          "Q":"Qubec",
-          "R":"Romeo",
-          "S":"Sierra",
-          "T":"Tango",
-          "U":"Uniform",
-          "V":"Victor",
-          "W":"Whiskey",
-          "X":"Xray",
-          "Y":"Yankee",
-          "Z":"Zulu"
-     };
-     
-     window.onload=function(){
-          console.log("Loaded!");
-          document.getElementById("word").oninput=function(){
+          <center><h1>Spell it!</h1></center>
+          <input type="text" id="word" value="KF5RRR" class="wide">
+          <div id="phonetic_box" class="top_10px"></div>
+          <script>
+          var nato={
+               "A":"Alfa",
+               "B":"Bravo",
+               "C":"Charlie",
+               "D":"Delta",
+               "E":"Echo",
+               "F":"Foxtrot",
+               "G":"Golf",
+               "H":"Hotel",
+               "I":"India",
+               "J":"Juliett",
+               "K":"Kilo",
+               "L":"Lima",
+               "M":"Mike",
+               "N":"November",
+               "O":"Oscar",
+               "P":"Papa",
+               "Q":"Qubec",
+               "R":"Romeo",
+               "S":"Sierra",
+               "T":"Tango",
+               "U":"Uniform",
+               "V":"Victor",
+               "W":"Whiskey",
+               "X":"Xray",
+               "Y":"Yankee",
+               "Z":"Zulu"
+          };
+          
+          window.onload=function(){
+               console.log("Loaded!");
+               document.getElementById("word").oninput=function(){
+                    word2phonetic(document.getElementById("word").value);
+               };
                word2phonetic(document.getElementById("word").value);
           };
-     };
-     
-     function word2phonetic(word){
-          var output=""
-          var alphaArray=word.toUpperCase().split("");
-          alphaArray.forEach(function(alphabet){
-               console.log("["+alphabet+"]");
-               if (alphabet>"A" && alphabet<"Z"){
-                    output+=" "+nato[alphabet]+" ";
-               }else if(alphabet==" "){
-                    output+=" &lt; space &gt; ";
-               }
-          });
-          document.getElementById("phonetic_box").innerHTML=output
-     }
-     </script>
+          
+          function word2phonetic(word){
+               var output=""
+               var alphaArray=word.toUpperCase().split("");
+               alphaArray.forEach(function(alphabet){
+                    var current="";
+                    if (alphabet>="A" && alphabet<="Z"){
+                         current+="<span class=\"alpha chars\"> &nbsp; "+nato[alphabet]+" &nbsp; </span>";
+                    }else if(alphabet==" "){
+                         current+="<span class=\"alpha space\"> &lt; space &gt; </span>";
+                    }else if (alphabet>=0 && alphabet<=9){
+                         current+="<span class=\"alpha nums\"> &nbsp; "+alphabet+"  &nbsp; </span>";
+                    }
+                    output+=current;
+               });
+               document.getElementById("phonetic_box").innerHTML=output
+          }
+          </script>
+     </body>
 </html>
