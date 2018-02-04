@@ -20,6 +20,9 @@
                     -moz-box-sizing: border-box;
                     box-sizing: border-box;
                }
+               body{
+                    background:#fefefa;
+               }
                footer{
                     font-size:0.75em;
                     position:fixed;
@@ -30,20 +33,13 @@
                     -moz-box-sizing: inherit;
                     box-sizing: inherit;
                }
-               div.wide{
-				width:100%;
-				background:#C00;
-				box-sizing:border-box;
-               }
-               div.wide > input{
-                    width:100%;
-				box-sizing:border-box;
-               }
-               .top_10px{
-                    margin-top:10px;
-               }
                #phonetic_box{
                     text-align:justify;
+                    display:none;
+               }
+               #splash_box{
+                    text-align:center;
+                    display:block;
                }
                .alpha{
                     display: inline-block;
@@ -79,24 +75,45 @@
                .center{
                     text-align:center;
                }
+               .top-space{
+                    margin-top:5px;
+               }
+               #feedback{
+                    position:absolute;
+                    bottom:5px;
+                    right:0px;
+                    border-top-left-radius:7px;
+                    border-bottom-left-radius:7px;
+                    border-color:#000;
+                    border-top:1px solid;
+                    border-bottom:1px solid;
+                    border-left:1px solid;
+                    background:#fafafa;
+                    padding:2px;
+               }
+               #feedback:hover{
+                    cursor:pointer;
+               }
           </style>
      </head>
      <body>
           <div class="container-fluid">
                <div class="row">
-               <div class="col-xs-12"><h1 class="center">Spell it!</h1></div>
-               </div>
-               <div class="row">
                     <div class="col-xs-12">
                          <div class="form-group">
-                              <input class="form-control input-lg" type="text" id="word" placeholder="Type in your name or a word &hellip;" value="">
+                              <input class="form-control input-lg top-space" type="text" id="word" placeholder="Type in your name or a word &hellip;" value="" data-toggle="tooltip" data-placement="bottom" title="Type in your name or a word...">
                          </div>
                     </div>
                </div>
                <div class="row">
                     <div id="phonetic_box" class="col-xs-12"></div>
+                    <div id="splash_box" class="col-xs-12">
+                         <img src="morse-code256.png" alt="Spell it!"/>
+                         <h1 class="center">Spell it!</h1>
+                    </div>
                </div>
           </div>
+          <div id="feedback"><img src="support.png" alt="support" /></div>
           <footer class="blockquote-footer">
                <div id="author">Follow on <a href="https://github.com/lordloh/spellit">github</a> | <a href="https://twitter.com/lordloh">twitter</a> | <a href="https://www.linkedin.com/in/lohray/">linkedin</a> | <a href="https://bharath.lohray.com/cv/">www</a></div>
                <div id="iconmaker">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -138,14 +155,23 @@
                console.log("Loaded!");
                document.getElementById("word").oninput=function(){
                     word2phonetic(document.getElementById("word").value);
+                    $('#word').tooltip('hide');
                };
-               word2phonetic(document.getElementById("word").value);
           };
           
           $(document).ready(function(){
                var timeoutID = window.setTimeout(function(){
                     $('#iconmaker').remove();
-               }, 10000);
+                    $('#word').tooltip('hide');
+               }, 6000);
+               $('#word').tooltip({
+                    'trigger':'manual',
+                    'placement':'bottom',
+                    'html':false
+               }).tooltip('show');
+               $('#feedback').click(function(){
+                    window.location.href='https://github.com/lordloh/spellit/issues';
+               });
           });
           
           function word2phonetic(word){
@@ -165,6 +191,13 @@
                     output+=current;
                });
                document.getElementById("phonetic_box").innerHTML=output
+               if(output==""){
+                    $('#phonetic_box').hide();
+                    $('#splash_box').show();
+               }else{
+                    $('#splash_box').hide();
+                    $('#phonetic_box').show();
+               }
           }
           </script>
           <!-- Global site tag (gtag.js) - Google Analytics -->
