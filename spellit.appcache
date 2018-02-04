@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# update 20180204 0208
+# update 20180204 0224
 
 CACHE:
 https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
@@ -9,7 +9,7 @@ https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
 morse-code64.png
 morse-code128.png
 morse-code256.png
-support.png
+support32.png
 index.html
 
 NETWORK:
