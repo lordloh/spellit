@@ -1,4 +1,4 @@
-![Spell it!](morse-code512.png)
+![Spell it!](morse-code256.png)
 # Spell it!
 https://lordloh.github.io/spellit/ 
 
