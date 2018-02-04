@@ -1,6 +1,11 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html manifest="spellit.appcache">
      <head>
+          <meta charset="utf-8">
+          <link rel="icon" href="morse-code64.png">
+          <link rel="shortcut icon" href="morse-code64.png"> 
+          <link rel="apple-touch-icon" sizes="128x128" href="morse-code128.png">
+          
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <!-- Latest compiled and minified CSS -->
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -8,13 +13,17 @@
           <!-- Optional theme -->
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
           
-          <meta charset="utf-8">
           <title>Spell it!</title>
           <style>
                html{
                     -webkit-box-sizing: border-box;
                     -moz-box-sizing: border-box;
                     box-sizing: border-box;
+               }
+               footer{
+                    font-size:0.75em;
+                    position:fixed;
+                    bottom:0px;
                }
                *, *:before, *:after {
                     -webkit-box-sizing: inherit;
@@ -41,6 +50,7 @@
                     text-align:center;
                     padding:0px;
                     border:1px solid;
+                    border-color:#0A0;
                     border-radius:5px;
 				box-sizing:border-box;
 				margin-right:10px;
@@ -53,15 +63,18 @@
                }
                .alpha.chars{
                     background:#090;
+                    color:#FFF;
                }
                .alpha.nums{
                     background:#0C0;
+                    color:#FFF;
                }
                .alpha.space{
                     background:#9F3;
                }
                .alpha.others{
                     background:#9C0;
+                    font-weight:900;
                }
                .center{
                     text-align:center;
@@ -69,8 +82,10 @@
           </style>
      </head>
      <body>
-          <h1 class="center">Spell it!</h1>
           <div class="container-fluid">
+               <div class="row">
+               <div class="col-xs-12"><h1 class="center">Spell it!</h1></div>
+               </div>
                <div class="row">
                     <div class="col-xs-12">
                          <div class="form-group">
@@ -82,6 +97,10 @@
                     <div id="phonetic_box" class="col-xs-12"></div>
                </div>
           </div>
+          <footer class="blockquote-footer">
+               <div id="author">Follow on <a href="https://github.com/lordloh/spellit">github</a> | <a href="https://twitter.com/lordloh">twitter</a> | <a href="https://www.linkedin.com/in/lohray/">linkedin</a> | <a href="https://bharath.lohray.com/cv/">www</a></div>
+               <div id="iconmaker">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+          </footer>
           <!-- Latest compiled and minified JavaScript -->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -123,6 +142,12 @@
                word2phonetic(document.getElementById("word").value);
           };
           
+          $(document).ready(function(){
+               var timeoutID = window.setTimeout(function(){
+                    $('#iconmaker').remove();
+               }, 10000);
+          });
+          
           function word2phonetic(word){
                var output=""
                var alphaArray=word.toUpperCase().split("");
@@ -131,7 +156,7 @@
                     if (alphabet>="A" && alphabet<="Z"){
                          current+="<span class=\"alpha chars\">&nbsp;&nbsp;"+nato[alphabet]+"&nbsp;&nbsp;</span> ";
                     }else if(alphabet==" "){
-                         current+="<span class=\"alpha space\">&lt;&nbsp;space&nbsp;&gt;</span> ";
+                         current+="<span class=\"alpha space\">&#171;&nbsp;space&nbsp;&#187;</span> ";
                     }else if (alphabet>=0 && alphabet<=9){
                          current+="<span class=\"alpha nums\">&nbsp;&nbsp;"+alphabet+"&nbsp;&nbsp;</span> ";
                     }else{
