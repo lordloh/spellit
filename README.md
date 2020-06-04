@@ -1,5 +1,6 @@
 ![Spell it!](morse-code256.png)
 # Spell it!
+![Featured on Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=119446&theme=light)
 https://lordloh.github.io/spellit/ 
 
 This is a one page static webapp to convert spellings into phonetic mnemonics. _[Try it out](https://lordloh.github.io/spellit/)_.
